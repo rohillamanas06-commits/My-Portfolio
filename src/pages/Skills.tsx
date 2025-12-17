@@ -3,7 +3,7 @@ import { Layout } from '@/components/Layout';
 import { GlassCard } from '@/components/GlassCard';
 import { ProgressBar, CircularProgress } from '@/components/ProgressBar';
 import { skills } from '@/data/portfolio';
-import { Brain, Code, Wrench, BarChart3 } from 'lucide-react';
+import { Brain, Code, Wrench, BarChart3, Award, Download, ExternalLink } from 'lucide-react';
 
 const categoryIcons: Record<string, typeof Brain> = {
   "AI & Machine Learning": Brain,
@@ -44,7 +44,7 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        {/* Core Skills - Circular Progress */}
+        {/* GitHub Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,18 +53,35 @@ export default function Skills() {
         >
           <h2 className="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
             <span className="w-8 h-1 bg-primary rounded-full" />
-            Core Competencies
+            GitHub Stats
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {topSkills.map((skill, index) => (
-              <GlassCard key={skill.name} className="flex justify-center py-8">
-                <CircularProgress
-                  name={skill.name}
-                  level={skill.level}
-                  delay={index * 0.2}
-                />
-              </GlassCard>
-            ))}
+          <div className="grid md:grid-cols-2 gap-6">
+            <GlassCard hover={false} className="flex justify-center items-center">
+              <img 
+                src="https://github-readme-stats.vercel.app/api?username=rohillamanas06-commits&show_icons=true&theme=radical&hide_border=true&bg_color=00000000&title_color=10b981&text_color=94a3b8&icon_color=10b981" 
+                alt="GitHub Stats"
+                className="w-full"
+              />
+            </GlassCard>
+            <GlassCard hover={false} className="flex flex-col justify-center items-center p-8 text-center">
+              <motion.div
+                animate={{ 
+                  rotate: [0, 360],
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity, 
+                  ease: "linear" 
+                }}
+                className="text-6xl mb-4"
+              >
+                🚀
+              </motion.div>
+              <h3 className="text-2xl font-bold text-primary mb-2">Always Learning!</h3>
+              <p className="text-muted-foreground">
+                Building the future, one line of code at a time
+              </p>
+            </GlassCard>
           </div>
         </motion.div>
 
@@ -106,18 +123,104 @@ export default function Skills() {
           })}
         </div>
 
-        {/* Additional Info */}
+        {/* Certificates Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
+          className="mt-12"
+        >
+          <h2 className="text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+            <span className="w-8 h-1 bg-primary rounded-full" />
+            Certificates
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Udemy Certificate */}
+            <GlassCard className="flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 rounded-xl bg-primary/20">
+                  <Award className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">Udemy</h3>
+                  <p className="text-sm text-muted-foreground">Course Certificate</p>
+                </div>
+              </div>
+              <div className="flex gap-3 mt-auto">
+                <motion.a
+                  href="/Udemy.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-foreground transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  View
+                </motion.a>
+                <motion.a
+                  href="/Udemy.pdf"
+                  download="Manas_Rohilla_Udemy_Certificate.pdf"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Download className="w-4 h-4" />
+                  Download
+                </motion.a>
+              </div>
+            </GlassCard>
+
+            {/* NPTEL Certificate */}
+            <GlassCard className="flex flex-col">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 rounded-xl bg-primary/20">
+                  <Award className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">NPTEL</h3>
+                  <p className="text-sm text-muted-foreground">Course Certificate</p>
+                </div>
+              </div>
+              <div className="flex gap-3 mt-auto">
+                <motion.a
+                  href="/Nptel.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-foreground transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  View
+                </motion.a>
+                <motion.a
+                  href="/Nptel.pdf"
+                  download="Manas_Rohilla_NPTEL_Certificate.pdf"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Download className="w-4 h-4" />
+                  Download
+                </motion.a>
+              </div>
+            </GlassCard>
+          </div>
+        </motion.div>
+
+        {/* Additional Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
           className="mt-12 text-center"
         >
           <GlassCard hover={false} className="inline-block">
             <p className="text-muted-foreground">
-              Always learning and exploring new technologies. 
-              <span className="text-primary font-medium"> Currently diving into </span>
-              Large Language Models, RAG systems, and MLOps.
+              Passionate about leveraging
+              <span className="text-primary font-medium"> AI and machine learning </span>
+              to build intelligent solutions that solve real-world problems
             </p>
           </GlassCard>
         </motion.div>

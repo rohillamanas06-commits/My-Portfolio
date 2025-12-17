@@ -20,22 +20,40 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('http://localhost:5000/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      toast({
+        title: "Message sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+      
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or email directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
-    { icon: Github, href: personalInfo.github, label: "GitHub", username: "@manasrohilla" },
-    { icon: Linkedin, href: personalInfo.linkedin, label: "LinkedIn", username: "manasrohilla" },
-    { icon: Instagram, href: personalInfo.instagram, label: "Instagram", username: "@manasrohilla" },
+    { icon: Github, href: personalInfo.github, label: "GitHub", username: "@rohillamanas06-commits" },
+    { icon: Linkedin, href: personalInfo.linkedin, label: "LinkedIn", username: "@manas-rohilla" },
+    { icon: Instagram, href: personalInfo.instagram, label: "Instagram", username: "@manas_rohilla_" },
     { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email", username: personalInfo.email },
   ];
 
@@ -77,9 +95,15 @@ export default function Contact() {
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     Let's Talk
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-muted-foreground text-sm mb-3">
                     I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
                   </p>
+                  <a 
+                    href="tel:+918396026450"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    +91 8396026450
+                  </a>
                 </div>
               </div>
             </GlassCard>
@@ -94,7 +118,7 @@ export default function Contact() {
                     Location
                   </h3>
                   <p className="text-muted-foreground text-sm">
-                    India
+                    Jaipur , India
                   </p>
                 </div>
               </div>

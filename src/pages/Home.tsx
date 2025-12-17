@@ -1,24 +1,24 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Github, Linkedin, Instagram, Mail, Code, Brain, Database, Rocket } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Instagram, Mail, Code, GraduationCap, Lightbulb, GitCommit, Cpu } from 'lucide-react';
 import { Layout } from '@/components/Layout';
 import { GlassCard } from '@/components/GlassCard';
 import { TypewriterText } from '@/components/TypewriterText';
+import { FloatingOrbs } from '@/components/FloatingOrbs';
 import { personalInfo, stats } from '@/data/portfolio';
 
 export default function Home() {
   const roles = [
-    "AI & ML Enthusiast",
-    "Python Developer",
-    "Data Science Explorer",
-    "Problem Solver"
+    "BTech Undergraduate",
+    "Problem Solver",
+    "Tech Enthusiast"
   ];
 
   const statItems = [
-    { icon: Code, label: "Projects", value: stats.projects },
-    { icon: Brain, label: "Technologies", value: stats.technologies },
-    { icon: Database, label: "Experience", value: stats.experience },
-    { icon: Rocket, label: "Commits", value: stats.commits },
+    { icon: Code, label: "Projects", value: "4+" },
+    { icon: GraduationCap, label: "Year", value: "2nd Year" },
+    { icon: Lightbulb, label: "Focus", value: "Data Science" },
+    { icon: GitCommit, label: "Commits", value: "100+" },
   ];
 
   const socialLinks = [
@@ -30,7 +30,10 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="min-h-[calc(100vh-8rem)] flex flex-col justify-center">
+      {/* Animated Background */}
+      <FloatingOrbs />
+      
+      <div className="min-h-[calc(100vh-8rem)] flex flex-col justify-center relative">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -38,16 +41,62 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
+          {/* AI Brain Icon */}
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 200, delay: 0.2, duration: 1 }}
             className="inline-block mb-6"
           >
-            <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary to-accent p-1">
-              <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-                <span className="text-4xl font-bold gradient-text">MR</span>
+            <div className="relative w-32 h-32 mx-auto">
+              <motion.div
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-accent to-primary"
+                animate={{
+                  rotate: 360,
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                }}
+              />
+              <div className="absolute inset-1 rounded-full bg-background flex items-center justify-center">
+                <motion.div
+                  animate={{
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Cpu className="w-16 h-16 text-primary" />
+                </motion.div>
               </div>
+              {/* Orbiting particles */}
+              {[0, 120, 240].map((rotation, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute top-1/2 left-1/2 w-3 h-3 bg-primary rounded-full"
+                  style={{
+                    transformOrigin: '0 0',
+                  }}
+                  animate={{
+                    rotate: [rotation, rotation + 360],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                    delay: i * 0.3,
+                  }}
+                  initial={{
+                    x: 45,
+                    y: -1.5,
+                  }}
+                />
+              ))}
             </div>
           </motion.div>
 
@@ -138,7 +187,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-6xl mx-auto"
         >
           {statItems.map((stat, index) => (
             <GlassCard
@@ -146,13 +195,13 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 + index * 0.1 }}
-              className="text-center"
+              className="text-center py-8"
             >
-              <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
-              <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">
+              <stat.icon className="w-10 h-10 mx-auto mb-4 text-primary" />
+              <div className="text-3xl md:text-4xl font-bold text-foreground mb-2">
                 {typeof stat.value === 'number' ? `${stat.value}+` : stat.value}
               </div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div className="text-base text-muted-foreground">{stat.label}</div>
             </GlassCard>
           ))}
         </motion.div>

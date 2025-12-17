@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from './Navbar';
 import { FloatingOrbs } from './FloatingOrbs';
+import { Chatbot } from './Chatbot';
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,6 +23,7 @@ export function Layout({ children }: LayoutProps) {
           {children}
         </div>
       </motion.main>
+      <Chatbot />
     </div>
   );
 }

@@ -10,6 +10,7 @@ interface Project {
   technologies: string[];
   github: string;
   demo: string;
+  image?: string;
   featured: boolean;
 }
 
@@ -28,16 +29,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       layout
     >
       <GlassCard className="h-full relative overflow-hidden group">
-        {project.featured && (
-          <div className="absolute top-4 right-4">
-            <motion.div
-              className="flex items-center gap-1 px-2 py-1 rounded-full bg-primary/20 text-primary text-xs font-medium"
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <Star className="w-3 h-3 fill-current" />
-              Featured
-            </motion.div>
+        {project.image && (
+          <div className="w-full h-48 mb-4 rounded-lg overflow-hidden bg-muted">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
           </div>
         )}
 

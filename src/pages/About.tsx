@@ -4,8 +4,18 @@ import { Layout } from '@/components/Layout';
 import { GlassCard } from '@/components/GlassCard';
 import { Timeline } from '@/components/Timeline';
 import { personalInfo, education } from '@/data/portfolio';
+import { useToast } from '@/hooks/use-toast';
 
 export default function About() {
+  const { toast } = useToast();
+
+  const handleResumeClick = () => {
+    toast({
+      title: "Coming Soon!",
+      description: "Resume download will be available shortly.",
+    });
+  };
+
   return (
     <Layout>
       <motion.div
@@ -43,8 +53,13 @@ export default function About() {
                   transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
                   className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary to-accent p-1"
                 >
-                  <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-                    <User className="w-20 h-20 text-primary" />
+                  <div className="w-full h-full rounded-full bg-background flex items-center justify-center overflow-hidden">
+                    <img 
+                      src="/Myself.Jpg" 
+                      alt="Manas Rohilla"
+                      className="w-full h-full object-cover"
+                      style={{ filter: 'brightness(1) contrast(0.9)' }}
+                    />
                   </div>
                 </motion.div>
 
@@ -52,21 +67,18 @@ export default function About() {
                   {personalInfo.name}
                 </h2>
                 <p className="text-primary font-medium mb-4">
-                  AI/ML Enthusiast
+                  Btech CSE Student
                 </p>
 
                 <div className="space-y-3 text-left mb-6">
                   <div className="flex items-center gap-3 text-muted-foreground">
                     <MapPin className="w-5 h-5 text-primary" />
-                    <span>India</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                    <Calendar className="w-5 h-5 text-primary" />
-                    <span>2+ Years Experience</span>
+                    <span>Jaipur , India</span>
                   </div>
                 </div>
 
                 <motion.button
+                  onClick={handleResumeClick}
                   className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -96,13 +108,11 @@ export default function About() {
               </p>
               <p className="text-muted-foreground leading-relaxed mt-4">
                 I'm passionate about building intelligent systems that can solve real-world problems. 
-                My interests span across machine learning, deep learning, natural language processing, 
-                and computer vision. I believe in continuous learning and always strive to stay updated 
+                I believe in continuous learning and always strive to stay updated 
                 with the latest advancements in AI technology.
               </p>
               <p className="text-muted-foreground leading-relaxed mt-4">
-                When I'm not coding, you'll find me exploring new technologies, contributing to open-source 
-                projects, or sharing my knowledge through technical blog posts and tutorials.
+                When I'm not coding, you'll find me exploring new technologies.
               </p>
             </GlassCard>
 

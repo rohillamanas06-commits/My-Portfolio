@@ -24,15 +24,6 @@ export function Navbar() {
     >
       <div className="max-w-6xl mx-auto glass rounded-2xl px-6 py-3">
         <div className="flex items-center justify-between">
-          <Link to="/">
-            <motion.span
-              className="text-xl font-bold gradient-text"
-              whileHover={{ scale: 1.05 }}
-            >
-              MR
-            </motion.span>
-          </Link>
-
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
