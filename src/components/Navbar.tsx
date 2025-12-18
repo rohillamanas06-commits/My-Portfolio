@@ -55,7 +55,6 @@ export function Navbar() {
 
             {/* Mobile and Desktop Theme Picker + Menu Button - Right side */}
             <div className="flex items-center gap-4 ml-auto">
-              <ThemePicker />
               <motion.button
                 className="md:hidden p-2 glass rounded-xl"
                 onClick={() => setIsOpen(!isOpen)}
@@ -63,6 +62,7 @@ export function Navbar() {
               >
                 {isOpen ? <X size={20} /> : <Menu size={20} />}
               </motion.button>
+              <ThemePicker />
             </div>
           </div>
         </div>
