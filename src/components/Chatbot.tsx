@@ -29,6 +29,18 @@ export function Chatbot() {
     scrollToBottom();
   }, [messages]);
 
+  // Prevent body scroll when chatbot is open on mobile
+  useEffect(() => {
+    if (isOpen && window.innerWidth < 768) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const getContext = () => {
     return `You are an AI assistant representing Manas Rohilla. Here's information about him:
 
@@ -143,6 +155,20 @@ Answer questions about Manas professionally and helpfully. If asked to schedule 
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
       </motion.button>
+
+      {/* Backdrop blur overlay for mobile */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-background/80 backdrop-blur-md z-40 md:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Chat Window */}
       <AnimatePresence>
