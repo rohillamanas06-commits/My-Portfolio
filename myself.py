@@ -16,7 +16,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for frontend integration
+
+# Configure CORS with environment variable
+cors_origins = os.getenv('CORS_ORIGINS', '*')
+CORS(app, resources={r"/*": {"origins": cors_origins}})
 
 # ============================================================================
 # PORTFOLIO DATA
