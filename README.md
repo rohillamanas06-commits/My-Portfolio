@@ -1,8 +1,6 @@
 # 🚀 Manas Rohilla - Portfolio
 
 A modern, interactive portfolio website showcasing my projects, skills, and experience as an AI-based developer. Built with cutting-edge web technologies and featuring a sleek glassmorphism design with smooth animations.
-
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](https://your-portfolio-url.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Portfolio-blue.svg)](https://github.com/rohillamanas06-commits)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5.svg)](https://www.linkedin.com/in/manas-rohilla-b73415338/)
 
