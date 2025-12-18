@@ -1,15 +1,9 @@
-"""
-Manas Rohilla - Portfolio Backend API
-All-in-one Flask application with embedded data
-"""
-
 from flask import Flask, jsonify, send_file, request
 from flask_cors import CORS
 from datetime import datetime
 import os
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -324,19 +318,15 @@ def send_email():
         subject = data.get('subject')
         message = data.get('message')
         
-        # Get email credentials from environment variables
-        smtp_server = os.getenv('SMTP_SERVER')
-        smtp_port = int(os.getenv('SMTP_PORT'))
-        smtp_username = os.getenv('SMTP_USERNAME')
-        smtp_password = os.getenv('SMTP_PASSWORD')
+        # Get SendGrid API key and recipient email
+        sendgrid_api_key = os.getenv('SENDGRID_API_KEY')
+        recipient_email = os.getenv('RECIPIENT_EMAIL', 'rohillamanas06@gmail.com')
         
-        # Create email
-        msg = MIMEMultipart()
-        msg['From'] = smtp_username
-        msg['To'] = smtp_username  # Send to yourself
-        msg['Subject'] = f"Portfolio Contact: {subject}"
+        if not sendgrid_api_key:
+            return jsonify({'error': 'SendGrid API key not configured'}), 500
         
-        body = f"""
+        # Create email content
+        email_body = f"""
 New message from portfolio contact form:
 
 Name: {name}
@@ -350,22 +340,22 @@ Message:
 Sent from Portfolio Contact Form
 """
         
-        msg.attach(MIMEText(body, 'plain'))
+        # Create SendGrid message
+        sg_message = Mail(
+            from_email='noreply@manas-rohilla.vercel.app',
+            to_emails=recipient_email,
+            subject=f"Portfolio Contact: {subject}",
+            plain_text_content=email_body
+        )
         
-        # Send email with timeout - try SSL on port 465
-        try:
-            # Try SMTP_SSL first (port 465)
-            with smtplib.SMTP_SSL(smtp_server, 465, timeout=10) as server:
-                server.login(smtp_username, smtp_password)
-                server.send_message(msg)
-        except Exception as ssl_error:
-            # Fallback to STARTTLS (port 587)
-            with smtplib.SMTP(smtp_server, smtp_port, timeout=10) as server:
-                server.starttls()
-                server.login(smtp_username, smtp_password)
-                server.send_message(msg)
+        # Set reply-to as the sender's email
+        sg_message.reply_to = email
         
-        print(f"Email sent from: {name} ({email})")
+        # Send email via SendGrid
+        sg = SendGridAPIClient(sendgrid_api_key)
+        response = sg.send(sg_message)
+        
+        print(f"Email sent from: {name} ({email}) - Status: {response.status_code}")
         
         return jsonify({
             'success': True,
@@ -374,7 +364,7 @@ Sent from Portfolio Contact Form
     
     except Exception as e:
         print(f"Email error: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': 'Failed to send email. Please try again.'}), 500
 
 @app.route('/api/search', methods=['GET'])
 def search():
