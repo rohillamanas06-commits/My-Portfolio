@@ -12,7 +12,22 @@ export function ThemePicker() {
   ] as const;
 
   return (
-    <div className="relative">
+    <>
+      {/* Backdrop blur overlay for theme picker on mobile */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 bg-background/80 backdrop-blur-md z-40 md:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="relative">
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className="relative w-10 h-10 rounded-full glass flex items-center justify-center overflow-hidden"
@@ -39,7 +54,7 @@ export function ThemePicker() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: -10 }}
             transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className="absolute left-0 md:right-0 md:left-auto top-14 glass rounded-2xl p-3 min-w-[140px] z-50"
+            className="absolute right-0 top-14 glass rounded-2xl p-3 min-w-[140px] z-50"
           >
             <div className="space-y-2">
               {themes.map((t) => (
@@ -81,5 +96,6 @@ export function ThemePicker() {
         )}
       </AnimatePresence>
     </div>
+    </>
   );
 }

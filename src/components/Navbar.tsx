@@ -18,56 +18,66 @@ export function Navbar() {
   const location = useLocation();
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 px-4 py-4"
-    >
-      <div className="max-w-6xl mx-auto glass rounded-2xl px-6 py-3">
-        <div className="flex items-center justify-between">
-          {/* Mobile Menu Button and Theme Picker - Left side on mobile */}
-          <div className="flex items-center gap-4 md:hidden">
-            <motion.button
-              className="p-2 glass rounded-xl"
-              onClick={() => setIsOpen(!isOpen)}
-              whileTap={{ scale: 0.95 }}
-            >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
-            </motion.button>
-            <ThemePicker />
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Desktop Theme Picker - Right side on desktop */}
-          <div className="hidden md:block">
-            <ThemePicker />
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
+    <>
+      {/* Backdrop blur overlay for mobile sidebar */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ type: "tween", duration: 0.2 }}
-            className="md:hidden mt-2 mx-4"
-            style={{ willChange: 'height, opacity' }}
-          >
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-background/80 backdrop-blur-md z-40 md:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className="fixed top-0 left-0 right-0 z-50 px-4 py-4"
+      >
+        <div className="max-w-6xl mx-auto glass rounded-2xl px-6 py-3">
+          <div className="flex items-center justify-between">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Mobile and Desktop Theme Picker + Menu Button - Right side */}
+            <div className="flex items-center gap-4 ml-auto">
+              <ThemePicker />
+              <motion.button
+                className="md:hidden p-2 glass rounded-xl"
+                onClick={() => setIsOpen(!isOpen)}
+                whileTap={{ scale: 0.95 }}
+              >
+                {isOpen ? <X size={20} /> : <Menu size={20} />}
+              </motion.button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ type: "tween", duration: 0.2 }}
+              className="md:hidden mt-2 mx-4 relative z-50"
+              style={{ willChange: 'height, opacity' }}
+            >
             <div className="glass rounded-2xl p-4 space-y-2">
               {navLinks.map((link, index) => (
                 <motion.div
@@ -94,6 +104,7 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+      </motion.nav>
+    </>
   );
 }
