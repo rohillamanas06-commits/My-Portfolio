@@ -4,7 +4,7 @@ services:
     name: portfolio-backend
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn myself:app
+    startCommand: gunicorn myself:app --bind 0.0.0.0:$PORT
     envVars:
       - key: FLASK_ENV
         value: production
