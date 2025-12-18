@@ -207,7 +207,7 @@ export default function Home() {
               <GlassCard className="text-center py-10 backdrop-blur-xl border-2 hover:border-primary/50 transition-all shadow-xl h-full flex flex-col items-center justify-center">
                 <stat.icon className={`w-12 h-12 mx-auto mb-4 ${stat.color}`} />
                 <motion.div 
-                  className="text-3xl md:text-4xl font-bold text-foreground mb-2 whitespace-nowrap"
+                  className="text-3xl md:text-4xl font-bold text-foreground mb-2 px-2 break-words"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 1.2 + index * 0.15, type: "spring" }}
