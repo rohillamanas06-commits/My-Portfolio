@@ -352,8 +352,8 @@ Sent from Portfolio Contact Form
         
         msg.attach(MIMEText(body, 'plain'))
         
-        # Send email
-        with smtplib.SMTP(smtp_server, smtp_port) as server:
+        # Send email with timeout
+        with smtplib.SMTP(smtp_server, smtp_port, timeout=10) as server:
             server.starttls()
             server.login(smtp_username, smtp_password)
             server.send_message(msg)
