@@ -352,11 +352,18 @@ Sent from Portfolio Contact Form
         
         msg.attach(MIMEText(body, 'plain'))
         
-        # Send email with timeout
-        with smtplib.SMTP(smtp_server, smtp_port, timeout=10) as server:
-            server.starttls()
-            server.login(smtp_username, smtp_password)
-            server.send_message(msg)
+        # Send email with timeout - try SSL on port 465
+        try:
+            # Try SMTP_SSL first (port 465)
+            with smtplib.SMTP_SSL(smtp_server, 465, timeout=10) as server:
+                server.login(smtp_username, smtp_password)
+                server.send_message(msg)
+        except Exception as ssl_error:
+            # Fallback to STARTTLS (port 587)
+            with smtplib.SMTP(smtp_server, smtp_port, timeout=10) as server:
+                server.starttls()
+                server.login(smtp_username, smtp_password)
+                server.send_message(msg)
         
         print(f"Email sent from: {name} ({email})")
         
