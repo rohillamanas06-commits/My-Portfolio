@@ -25,6 +25,18 @@ export function Navbar() {
     >
       <div className="max-w-6xl mx-auto glass rounded-2xl px-6 py-3">
         <div className="flex items-center justify-between">
+          {/* Mobile Menu Button and Theme Picker - Left side on mobile */}
+          <div className="flex items-center gap-4 md:hidden">
+            <motion.button
+              className="p-2 glass rounded-xl"
+              onClick={() => setIsOpen(!isOpen)}
+              whileTap={{ scale: 0.95 }}
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </motion.button>
+            <ThemePicker />
+          </div>
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
@@ -38,17 +50,9 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* Desktop Theme Picker - Right side on desktop */}
+          <div className="hidden md:block">
             <ThemePicker />
-            
-            {/* Mobile Menu Button */}
-            <motion.button
-              className="md:hidden p-2 glass rounded-xl"
-              onClick={() => setIsOpen(!isOpen)}
-              whileTap={{ scale: 0.95 }}
-            >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
-            </motion.button>
           </div>
         </div>
       </div>
@@ -60,7 +64,9 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ type: "tween", duration: 0.2 }}
             className="md:hidden mt-2 mx-4"
+            style={{ willChange: 'height, opacity' }}
           >
             <div className="glass rounded-2xl p-4 space-y-2">
               {navLinks.map((link, index) => (
@@ -68,7 +74,8 @@ export function Navbar() {
                   key={link.path}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.05, type: "tween", duration: 0.15 }}
+                  style={{ willChange: 'transform, opacity' }}
                 >
                   <Link
                     to={link.path}

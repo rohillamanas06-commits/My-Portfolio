@@ -197,13 +197,13 @@ Answer questions about Manas professionally and helpfully. If asked to schedule 
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask me anything..."
-                  className="flex-1 px-4 py-2 rounded-xl bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="flex-1 min-w-0 px-4 py-2 rounded-xl bg-muted text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                   disabled={isLoading}
                 />
                 <motion.button
                   type="submit"
                   disabled={isLoading || !input.trim()}
-                  className="p-2 rounded-xl bg-primary text-primary-foreground disabled:opacity-50"
+                  className="flex-shrink-0 p-2 rounded-xl bg-primary text-primary-foreground disabled:opacity-50"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

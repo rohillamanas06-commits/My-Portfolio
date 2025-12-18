@@ -39,7 +39,7 @@ export function ThemePicker() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: -10 }}
             transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            className="absolute right-0 top-14 glass rounded-2xl p-3 min-w-[140px] z-50"
+            className="absolute left-0 md:right-0 md:left-auto top-14 glass rounded-2xl p-3 min-w-[140px] z-50"
           >
             <div className="space-y-2">
               {themes.map((t) => (

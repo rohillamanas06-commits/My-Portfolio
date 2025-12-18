@@ -109,7 +109,7 @@ export default function Blogs() {
                 Want to be notified when blogs are published?
               </p>
               <motion.div
-                className="flex gap-2 max-w-md mx-auto"
+                className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto px-4 sm:px-0"
                 whileHover={{ scale: 1.02 }}
               >
                 <input
@@ -117,11 +117,11 @@ export default function Blogs() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-2 rounded-xl glass bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="flex-1 min-w-0 px-4 py-2 rounded-xl glass bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                   onKeyDown={(e) => e.key === 'Enter' && handleNotify()}
                 />
                 <motion.button
-                  className="px-6 py-2 rounded-xl bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
+                  className="flex-shrink-0 px-6 py-2 rounded-xl bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity whitespace-nowrap"
                   whileTap={{ scale: 0.98 }}
                   onClick={handleNotify}
                 >
