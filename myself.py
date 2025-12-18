@@ -342,7 +342,7 @@ Sent from Portfolio Contact Form
         
         # Create SendGrid message
         sg_message = Mail(
-            from_email='noreply@manas-rohilla.vercel.app',
+            from_email='rohillamanas06@gmail.com',  # Use verified sender email
             to_emails=recipient_email,
             subject=f"Portfolio Contact: {subject}",
             plain_text_content=email_body
