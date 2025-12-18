@@ -101,9 +101,14 @@
     @apply border-border;
   }
   
+  :root {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
@@ -117,6 +122,7 @@
     backdrop-filter: blur(20px);
     border: 1px solid hsl(var(--glass-border) / 0.3);
     box-shadow: 0 8px 32px hsl(var(--background) / 0.3);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
   
   .glass-card {
@@ -130,6 +136,7 @@
   
   .glow-text {
     text-shadow: 0 0 20px hsl(var(--primary) / 0.5), 0 0 40px hsl(var(--primary) / 0.3);
+    transition: text-shadow 0.3s ease;
   }
   
   .gradient-text {
@@ -141,10 +148,13 @@
   .floating-orb {
     @apply absolute rounded-full opacity-30;
     filter: blur(60px);
+    transition: background-color 0.3s ease;
+    will-change: transform;
   }
   
   .nav-link {
     @apply relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300;
+    will-change: color;
   }
   
   .nav-link::after {

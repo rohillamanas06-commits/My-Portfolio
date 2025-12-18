@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
+import { memo } from 'react';
 
-export function FloatingOrbs() {
+export const FloatingOrbs = memo(() => {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <motion.div
@@ -13,6 +14,7 @@ export function FloatingOrbs() {
           duration: 20,
           repeat: Infinity,
           ease: "easeInOut",
+          repeatType: "loop",
         }}
       />
       <motion.div
@@ -26,6 +28,7 @@ export function FloatingOrbs() {
           repeat: Infinity,
           ease: "easeInOut",
           delay: 2,
+          repeatType: "loop",
         }}
       />
       <motion.div
@@ -39,6 +42,7 @@ export function FloatingOrbs() {
           repeat: Infinity,
           ease: "easeInOut",
           delay: 4,
+          repeatType: "loop",
         }}
       />
       <motion.div
@@ -52,8 +56,9 @@ export function FloatingOrbs() {
           repeat: Infinity,
           ease: "easeInOut",
           delay: 1,
+          repeatType: "loop",
         }}
       />
     </div>
   );
-}
+});

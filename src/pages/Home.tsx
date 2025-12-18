@@ -6,27 +6,28 @@ import { GlassCard } from '@/components/GlassCard';
 import { TypewriterText } from '@/components/TypewriterText';
 import { FloatingOrbs } from '@/components/FloatingOrbs';
 import { personalInfo, stats } from '@/data/portfolio';
+import { useMemo, memo } from 'react';
 
-export default function Home() {
-  const roles = [
+function Home() {
+  const roles = useMemo(() => [
     "BTech Undergraduate",
     "Problem Solver",
     "Tech Enthusiast",
-  ];
+  ], []);
 
-  const statItems = [
+  const statItems = useMemo(() => [
     { icon: Code, label: "Projects", value: "4+", color: "text-blue-500" },
     { icon: GraduationCap, label: "Year", value: "2nd Year", color: "text-purple-500" },
     { icon: Lightbulb, label: "Focus", value: "Data Science", color: "text-yellow-500" },
     { icon: GitCommit, label: "Commits", value: "100+", color: "text-green-500" },
-  ];
+  ], []);
 
-  const socialLinks = [
+  const socialLinks = useMemo(() => [
     { icon: Github, href: personalInfo.github, label: "GitHub", color: "hover:text-purple-500" },
     { icon: Linkedin, href: personalInfo.linkedin, label: "LinkedIn", color: "hover:text-blue-500" },
     { icon: Instagram, href: personalInfo.instagram, label: "Instagram", color: "hover:text-pink-500" },
     { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email", color: "hover:text-green-500" },
-  ];
+  ], []);
 
   return (
     <Layout>
@@ -223,3 +224,5 @@ export default function Home() {
     </Layout>
   );
 }
+
+export default memo(Home);

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from './Navbar';
 import { FloatingOrbs } from './FloatingOrbs';
@@ -8,7 +8,7 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-export function Layout({ children }: LayoutProps) {
+export const Layout = memo(({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       <FloatingOrbs />
@@ -26,4 +26,4 @@ export function Layout({ children }: LayoutProps) {
       <Chatbot />
     </div>
   );
-}
+});
