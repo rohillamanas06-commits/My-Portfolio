@@ -16,7 +16,7 @@ function Home() {
   ], []);
 
   const statItems = useMemo(() => [
-    { icon: Code, label: "Projects", value: "4+", color: "text-blue-500" },
+    { icon: Code, label: "Projects", value: "5+", color: "text-blue-500" },
     { icon: GraduationCap, label: "Year", value: "2nd Year", color: "text-purple-500" },
     { icon: Lightbulb, label: "Focus", value: "Data Science", color: "text-yellow-500" },
     { icon: GitCommit, label: "Commits", value: "100+", color: "text-green-500" },

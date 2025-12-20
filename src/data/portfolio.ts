@@ -14,7 +14,7 @@ export const personalInfo = {
 };
 
 export const stats = {
-  projects: 4,
+  projects: 5,
   technologies: 15,
   experience: "2nd Year Student",
   commits: "100+",
@@ -82,6 +82,17 @@ export const projects = [
     image: "/weather buddy.png",
     featured: false,
   },
+  {
+    id: 4,
+    title: "ResuAI - AI Resume Maker",
+    description: "An intelligent AI-powered resume builder that creates professional resumes using advanced AI technology. Features smart template selection, content optimization, and real-time preview to help users create standout resumes.",
+    category: "AI Tools",
+    technologies: ["Artificial Intelligence", "Python", "Flask", "API Integration"],
+    github: "https://github.com/rohillamanas06-commits/ResuAI---AI-Resume-Maker",
+    demo: "https://resuai-ai-resume-maker-v1.vercel.app/",
+    image: "/ResuAI.png",
+    featured: true,
+  },
 ];
 
 export const skills = {
@@ -112,4 +123,4 @@ export const skills = {
   ],
 };
 
-export const categories = ["All", "Healthcare AI", "Smart Transportation", "Utility"];
+export const categories = ["All", "Healthcare AI", "Smart Transportation", "Utility", "AI Tools"];
