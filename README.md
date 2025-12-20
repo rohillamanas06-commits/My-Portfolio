@@ -1,20 +1,15 @@
 # 🚀 Manas Rohilla - Portfolio
 
-[![GitHub](https://img.shields.io/badge/GitHub-Portfolio-blue.svg)](https://github.com/rohillamanas06-commits)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5.svg)](https://www.linkedin.com/in/manas-rohilla-b73415338/)
+
 
 ## ✨ Features
 
 - 🎨 **Modern Glassmorphism Design** - Beautiful glass-effect UI with dynamic theming
-- 🌓 **Theme Customization** - Multiple color themes with dark/light mode support
 - 🤖 **AI Chatbot** - Integrated Gemini AI chatbot for visitor interaction
 - 📱 **Fully Responsive** - Optimized for all devices and screen sizes
-- ⚡ **Smooth Animations** - Powered by Framer Motion for fluid user experience
 - 📧 **Contact Form** - Functional contact form with email integration
-- 🎯 **Interactive UI** - Floating orbs, tech icons, and dynamic backgrounds
 
   
-
 ## 🛠️ Tech Stack
 
 ### Frontend
