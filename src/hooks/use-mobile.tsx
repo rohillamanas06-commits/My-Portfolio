@@ -17,3 +17,19 @@ export function useIsMobile() {
 
   return !!isMobile;
 }
+// Hook for detecting low-performance devices
+export function useReducedMotion() {
+  const [shouldReduceMotion, setShouldReduceMotion] = React.useState(false)
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setShouldReduceMotion(mediaQuery.matches)
+    
+    const handler = () => setShouldReduceMotion(mediaQuery.matches)
+    mediaQuery.addEventListener('change', handler)
+    
+    return () => mediaQuery.removeEventListener('change', handler)
+  }, [])
+
+  return shouldReduceMotion
+}

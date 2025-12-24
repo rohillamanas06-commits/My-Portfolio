@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface TechIcon {
   id: number;
@@ -12,7 +13,9 @@ interface TechIcon {
 }
 
 export function FloatingTechIcons() {
-  const [icons] = useState<TechIcon[]>([
+  const isMobile = useIsMobile();
+  
+  const allIcons: TechIcon[] = [
     { id: 1, name: 'Python', symbol: '🐍', x: 10, y: 20, delay: 0, duration: 20 },
     { id: 2, name: 'React', symbol: '⚛️', x: 85, y: 15, delay: 2, duration: 25 },
     { id: 3, name: 'AI', symbol: '🤖', x: 15, y: 70, delay: 4, duration: 22 },
@@ -21,7 +24,15 @@ export function FloatingTechIcons() {
     { id: 6, name: 'Flask', symbol: '🔥', x: 25, y: 45, delay: 5, duration: 23 },
     { id: 7, name: 'Node', symbol: '📦', x: 75, y: 40, delay: 2.5, duration: 21 },
     { id: 8, name: 'Git', symbol: '🔧', x: 90, y: 80, delay: 4.5, duration: 27 },
-  ]);
+  ];
+  
+  // Reduce icons and particles on mobile
+  const icons = useMemo(() => 
+    isMobile ? allIcons.slice(0, 4) : allIcons,
+    [isMobile]
+  );
+  
+  const particleCount = isMobile ? 5 : 20;
 
   return (
     <div className="fixed inset-0 -z-5 overflow-hidden pointer-events-none">
@@ -36,8 +47,8 @@ export function FloatingTechIcons() {
           }}
           animate={{
             y: [`${icon.y}vh`, `${icon.y - 10}vh`, `${icon.y}vh`],
-            rotate: [0, 10, -10, 0],
-            scale: [1, 1.1, 1],
+            rotate: isMobile ? [0, 5, 0] : [0, 10, -10, 0],
+            scale: isMobile ? [1, 1.05, 1] : [1, 1.1, 1],
           }}
           transition={{
             duration: icon.duration,
@@ -51,7 +62,7 @@ export function FloatingTechIcons() {
       ))}
       
       {/* Floating particles */}
-      {Array.from({ length: 20 }).map((_, i) => (
+      {Array.from({ length: particleCount }).map((_, i) => (
         <motion.div
           key={`particle-${i}`}
           className="absolute w-1 h-1 bg-primary/30 rounded-full"

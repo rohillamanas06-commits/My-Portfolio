@@ -1,7 +1,27 @@
 import { motion } from 'framer-motion';
 import { memo } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export const AnimatedBackground = memo(() => {
+  const isMobile = useIsMobile();
+  
+  // Simplify for mobile devices
+  if (isMobile) {
+    return (
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        {/* Gradient Mesh Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
+        
+        {/* Static gradient orbs for mobile - no animation to save performance */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-2xl" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-2xl" />
+
+        {/* Lighter grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      </div>
+    );
+  }
+  
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       {/* Gradient Mesh Background */}

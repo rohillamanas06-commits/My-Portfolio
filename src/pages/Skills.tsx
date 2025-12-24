@@ -66,6 +66,8 @@ export default function Skills() {
                 <img 
                   src="https://github-readme-stats.vercel.app/api?username=rohillamanas06-commits&show_icons=true&theme=radical&hide_border=true&bg_color=00000000&title_color=10b981&text_color=94a3b8&icon_color=10b981" 
                   alt="GitHub Stats"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full transition-transform hover:scale-105"
                 />
               </a>

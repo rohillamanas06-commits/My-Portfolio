@@ -7,8 +7,11 @@ import { TypewriterText } from '@/components/TypewriterText';
 import { FloatingOrbs } from '@/components/FloatingOrbs';
 import { personalInfo, stats } from '@/data/portfolio';
 import { useMemo, memo } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 function Home() {
+  const isMobile = useIsMobile();
+  
   const roles = useMemo(() => [
     "BTech Undergraduate",
     "Problem Solver",
@@ -95,7 +98,7 @@ function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`p-4 glass rounded-2xl text-muted-foreground ${link.color} hover:border-primary/40 transition-all shadow-lg`}
-                  whileHover={{ scale: 1.15, y: -5 }}
+                  whileHover={isMobile ? undefined : { scale: 1.15, y: -5 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -116,7 +119,7 @@ function Home() {
               <Link to="/projects">
                 <motion.button
                   className="px-8 py-4 rounded-xl bg-gradient-to-r from-green-600 to-green-500 text-white font-semibold shadow-lg relative overflow-hidden group flex items-center gap-2"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={isMobile ? undefined : { scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <span className="relative z-10 flex items-center gap-2">
@@ -130,7 +133,7 @@ function Home() {
               <Link to="/contact">
                 <motion.button
                   className="px-8 py-4 rounded-2xl glass text-foreground font-bold backdrop-blur-xl border-2 border-primary/30 hover:border-primary shadow-xl"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={isMobile ? undefined : { scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <span className="flex items-center gap-3">
@@ -154,11 +157,11 @@ function Home() {
               {/* Decorative Elements */}
               <motion.div
                 className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-3xl"
-                animate={{
+                animate={isMobile ? {} : {
                   scale: [1, 1.1, 1],
                   rotate: [0, 5, -5, 0],
                 }}
-                transition={{
+                transition={isMobile ? {} : {
                   duration: 8,
                   repeat: Infinity,
                   ease: "easeInOut",
@@ -168,12 +171,13 @@ function Home() {
               {/* Main Image Container */}
               <motion.div
                 className="relative rounded-3xl overflow-hidden glass backdrop-blur-xl border-2 border-primary/20 shadow-2xl"
-                whileHover={{ scale: 1.02 }}
+                whileHover={isMobile ? undefined : { scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src="/Myself.Jpg"
                   alt="Manas Rohilla"
+                  loading="eager"
                   className="w-full h-auto object-cover"
                 />
                 {/* Gradient Overlay */}
@@ -200,7 +204,7 @@ function Home() {
                 type: "spring",
                 stiffness: 300 
               }}
-              whileHover={{ 
+              whileHover={isMobile ? undefined : { 
                 scale: 1.02,
                 transition: { duration: 0.2 }
               }}

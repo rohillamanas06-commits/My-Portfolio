@@ -152,6 +152,26 @@
     will-change: transform;
   }
   
+  /* Reduce blur effects on mobile for better performance */
+  @media (max-width: 768px) {
+    .floating-orb {
+      filter: blur(30px);
+      opacity: 20%;
+    }
+    
+    .glass {
+      backdrop-filter: blur(10px);
+    }
+    
+    .glass-card:hover {
+      box-shadow: 0 0 15px hsl(var(--glow) / 0.1);
+    }
+    
+    .glow-text {
+      text-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+    }
+  }
+  
   .nav-link {
     @apply relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-300;
     will-change: color;
@@ -204,5 +224,24 @@
   }
   75% {
     transform: translateY(-30px) translateX(5px);
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .floating-orb {
+    animation: none !important;
+  }
+  
+  .gradient-text {
+    animation: none !important;
   }
 }
