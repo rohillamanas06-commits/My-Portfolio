@@ -70,7 +70,7 @@ Portfolio/
 ### Pages
 - **Home** - Hero section with animated introduction
 - **About** - Educational background and timeline
-- **Projects** - Showcase of 4+ AI/ML projects with live demos
+- **Projects** - Showcase of AI projects with live demos
 - **Skills** - Interactive skill bars and GitHub stats
 - **Contact** - Functional contact form with social links
 - **Blogs** - Coming soon section with email notifications
