@@ -30,7 +30,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     >
       <GlassCard className="h-full relative overflow-hidden group">
         {project.image && (
-          <div className="w-full h-48 mb-4 rounded-lg overflow-hidden bg-muted">
+          <div className="hidden md:block w-full h-48 mb-4 rounded-lg overflow-hidden bg-muted">
             <img
               src={project.image}
               alt={project.title}
