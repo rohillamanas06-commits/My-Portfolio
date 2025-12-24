@@ -14,7 +14,7 @@ export const personalInfo = {
 };
 
 export const stats = {
-  projects: 5,
+  projects: 6,
   technologies: 15,
   experience: "2nd Year Student",
   commits: "100+",
@@ -91,6 +91,17 @@ export const projects = [
     github: "https://github.com/rohillamanas06-commits/ResuAI---AI-Resume-Maker",
     demo: "https://resuai-ai-resume-maker-v1.vercel.app/",
     image: "/ResuAI.png",
+    featured: true,
+  },
+  {
+    id: 5,
+    title: "NewsScope",
+    description: "An intelligent AI-powered fake news detection platform that analyzes and verifies news authenticity from multiple sources in real-time. ",
+    category: "AI Tools",
+    technologies: ["Python", "Flask", "API Integration", "Artificial Intelligence"],
+    github: "https://github.com/rohillamanas06-commits/NewsScope-AI-News-Detector",
+    demo: "https://newsscope-ai-news-detector.vercel.app/",
+    image: "/newsscope.png",
     featured: true,
   },
 ];
