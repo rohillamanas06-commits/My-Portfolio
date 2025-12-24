@@ -56,12 +56,19 @@ export default function Skills() {
             GitHub Stats
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <GlassCard hover={false} className="flex justify-center items-center">
-              <img 
-                src="https://github-readme-stats.vercel.app/api?username=rohillamanas06-commits&show_icons=true&theme=radical&hide_border=true&bg_color=00000000&title_color=10b981&text_color=94a3b8&icon_color=10b981" 
-                alt="GitHub Stats"
+            <GlassCard hover className="flex justify-center items-center overflow-hidden">
+              <a 
+                href="https://github.com/rohillamanas06-commits" 
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="w-full"
-              />
+              >
+                <img 
+                  src="https://github-readme-stats.vercel.app/api?username=rohillamanas06-commits&show_icons=true&theme=radical&hide_border=true&bg_color=00000000&title_color=10b981&text_color=94a3b8&icon_color=10b981" 
+                  alt="GitHub Stats"
+                  className="w-full transition-transform hover:scale-105"
+                />
+              </a>
             </GlassCard>
             <GlassCard hover={false} className="flex flex-col justify-center items-center p-8 text-center">
               <motion.div
@@ -78,9 +85,19 @@ export default function Skills() {
                 🚀
               </motion.div>
               <h3 className="text-2xl font-bold text-primary mb-2">Always Learning!</h3>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground mb-4">
                 Building the future, one line of code at a time
               </p>
+              <motion.a
+                href="https://github.com/rohillamanas06-commits"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-foreground transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View GitHub Profile
+              </motion.a>
             </GlassCard>
           </div>
         </motion.div>
@@ -219,7 +236,7 @@ export default function Skills() {
           <GlassCard hover={false} className="inline-block">
             <p className="text-muted-foreground">
               Passionate about leveraging
-              <span className="text-primary font-medium"> AI and machine learning </span>
+              <span className="text-primary font-medium"> AI </span>
               to build intelligent solutions that solve real-world problems
             </p>
           </GlassCard>
