@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Layout } from '@/components/Layout';
 import { GlassCard } from '@/components/GlassCard';
 import { ProgressBar, CircularProgress } from '@/components/ProgressBar';
+import { ImagePreviewModal } from '@/components/ImagePreviewModal';
 import { skills } from '@/data/portfolio';
 import { Brain, Code, Wrench, BarChart3, Award, Download, ExternalLink } from 'lucide-react';
 
@@ -14,6 +16,17 @@ const categoryIcons: Record<string, typeof Brain> = {
 
 export default function Skills() {
   const categories = Object.entries(skills);
+  const [previewModal, setPreviewModal] = useState<{
+    isOpen: boolean;
+    src: string;
+    alt: string;
+    downloadFilename: string;
+  }>({
+    isOpen: false,
+    src: '',
+    alt: '',
+    downloadFilename: '',
+  });
   
   // Get top skills for circular progress
   const topSkills = [
@@ -22,6 +35,14 @@ export default function Skills() {
     { name: "Data Analysis", level: 90 },
     { name: "Problem Solving", level: 88 },
   ];
+
+  const openPreview = (src: string, alt: string, downloadFilename: string) => {
+    setPreviewModal({ isOpen: true, src, alt, downloadFilename });
+  };
+
+  const closePreview = () => {
+    setPreviewModal({ isOpen: false, src: '', alt: '', downloadFilename: '' });
+  };
 
   return (
     <Layout>
@@ -166,17 +187,15 @@ export default function Skills() {
                 </div>
               </div>
               <div className="flex gap-3 mt-auto">
-                <motion.a
-                  href="/Udemy.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.button
+                  onClick={() => openPreview('/Udemy.pdf', 'Udemy Certificate', 'Manas_Rohilla_Udemy_Certificate.pdf')}
                   className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-foreground transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <ExternalLink className="w-4 h-4" />
                   View
-                </motion.a>
+                </motion.button>
                 <motion.a
                   href="/Udemy.pdf"
                   download="Manas_Rohilla_Udemy_Certificate.pdf"
@@ -202,17 +221,15 @@ export default function Skills() {
                 </div>
               </div>
               <div className="flex gap-3 mt-auto">
-                <motion.a
-                  href="/Nptel.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.button
+                  onClick={() => openPreview('/Nptel.pdf', 'NPTEL Certificate', 'Manas_Rohilla_NPTEL_Certificate.pdf')}
                   className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-foreground transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <ExternalLink className="w-4 h-4" />
                   View
-                </motion.a>
+                </motion.button>
                 <motion.a
                   href="/Nptel.pdf"
                   download="Manas_Rohilla_NPTEL_Certificate.pdf"
@@ -244,6 +261,15 @@ export default function Skills() {
           </GlassCard>
         </motion.div>
       </motion.div>
+
+      {/* Image Preview Modal */}
+      <ImagePreviewModal
+        src={previewModal.src}
+        alt={previewModal.alt}
+        isOpen={previewModal.isOpen}
+        onClose={closePreview}
+        downloadFilename={previewModal.downloadFilename}
+      />
     </Layout>
   );
 }
