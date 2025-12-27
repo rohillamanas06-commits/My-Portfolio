@@ -85,11 +85,18 @@ export default function Skills() {
                 className="w-full"
               >
                 <img 
-                  src="https://github-readme-stats.vercel.app/api?username=rohillamanas06-commits&show_icons=true&theme=radical&hide_border=true&bg_color=00000000&title_color=10b981&text_color=94a3b8&icon_color=10b981" 
+                  src="https://github-readme-stats.vercel.app/api?username=rohillamanas06-commits&show_icons=true&theme=radical&hide_border=true&bg_color=1a1a1a&title_color=10b981&text_color=94a3b8&icon_color=10b981" 
                   alt="GitHub Stats"
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
                   className="w-full transition-transform hover:scale-105"
+                  onError={(e) => {
+                    const img = e.target as HTMLImageElement;
+                    img.style.display = 'none';
+                    const parent = img.parentElement;
+                    if (parent) {
+                      parent.innerHTML = '<div class="text-center p-8"><p class="text-muted-foreground">GitHub stats temporarily unavailable</p><p class="text-sm text-muted-foreground mt-2">Visit my profile for full details</p></div>';
+                    }
+                  }}
                 />
               </a>
             </GlassCard>
