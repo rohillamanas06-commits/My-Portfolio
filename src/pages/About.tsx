@@ -10,9 +10,16 @@ export default function About() {
   const { toast } = useToast();
 
   const handleResumeClick = () => {
+    const link = document.createElement('a');
+    link.href = '/Resume.pdf';
+    link.download = 'Manas_Rohilla_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
     toast({
-      title: "Coming Soon!",
-      description: "Resume download will be available shortly.",
+      title: "Success!",
+      description: "Resume download started.",
     });
   };
 
