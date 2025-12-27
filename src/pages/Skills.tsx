@@ -187,15 +187,17 @@ export default function Skills() {
                 </div>
               </div>
               <div className="flex gap-3 mt-auto">
-                <motion.button
-                  onClick={() => openPreview('/Udemy.pdf', 'Udemy Certificate', 'Manas_Rohilla_Udemy_Certificate.pdf')}
+                <motion.a
+                  href="https://manas-rohilla.vercel.app/Udemy.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-foreground transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <ExternalLink className="w-4 h-4" />
                   View
-                </motion.button>
+                </motion.a>
                 <motion.a
                   href="/Udemy.pdf"
                   download="Manas_Rohilla_Udemy_Certificate.pdf"
@@ -221,15 +223,17 @@ export default function Skills() {
                 </div>
               </div>
               <div className="flex gap-3 mt-auto">
-                <motion.button
-                  onClick={() => openPreview('/Nptel.pdf', 'NPTEL Certificate', 'Manas_Rohilla_NPTEL_Certificate.pdf')}
+                <motion.a
+                  href="https://manas-rohilla.vercel.app/Nptel.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary/20 hover:bg-primary/30 text-foreground transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <ExternalLink className="w-4 h-4" />
                   View
-                </motion.button>
+                </motion.a>
                 <motion.a
                   href="/Nptel.pdf"
                   download="Manas_Rohilla_NPTEL_Certificate.pdf"
