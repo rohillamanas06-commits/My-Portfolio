@@ -14,11 +14,7 @@ services:
         value: 10000
       - key: CORS_ORIGINS
         sync: false
-      - key: SMTP_SERVER
+      - key: SENDGRID_API_KEY
         sync: false
-      - key: SMTP_PORT
-        sync: false
-      - key: SMTP_USERNAME
-        sync: false
-      - key: SMTP_PASSWORD
-        sync: false
+      - key: RECIPIENT_EMAIL
+        value: rohillamanas06@gmail.com

@@ -315,15 +315,20 @@ def send_email():
         data = request.get_json()
         name = data.get('name')
         email = data.get('email')
-        subject = data.get('subject')
+        subject = data.get('subject', 'No Subject')
         message = data.get('message')
+        
+        # Validate required fields
+        if not all([name, email, message]):
+            return jsonify({'error': 'Missing required fields'}), 400
         
         # Get SendGrid API key and recipient email
         sendgrid_api_key = os.getenv('SENDGRID_API_KEY')
         recipient_email = os.getenv('RECIPIENT_EMAIL', 'rohillamanas06@gmail.com')
         
         if not sendgrid_api_key:
-            return jsonify({'error': 'SendGrid API key not configured'}), 500
+            print("ERROR: SendGrid API key not configured")
+            return jsonify({'error': 'Email service not configured. Please contact directly at rohillamanas06@gmail.com'}), 503
         
         # Create email content
         email_body = f"""
@@ -357,14 +362,22 @@ Sent from Portfolio Contact Form
         
         print(f"Email sent from: {name} ({email}) - Status: {response.status_code}")
         
-        return jsonify({
-            'success': True,
-            'message': 'Email sent successfully!'
-        }), 200
+        if response.status_code >= 200 and response.status_code < 300:
+            return jsonify({
+                'success': True,
+                'message': 'Email sent successfully!'
+            }), 200
+        else:
+            print(f"SendGrid error: Status {response.status_code}")
+            return jsonify({'error': 'Failed to send email'}), 500
     
     except Exception as e:
         print(f"Email error: {str(e)}")
-        return jsonify({'error': 'Failed to send email. Please try again.'}), 500
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'error': 'Failed to send email. Please contact directly at rohillamanas06@gmail.com'
+        }), 500
 
 @app.route('/api/search', methods=['GET'])
 def search():
