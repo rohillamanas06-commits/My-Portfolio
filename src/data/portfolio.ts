@@ -14,7 +14,7 @@ export const personalInfo = {
 };
 
 export const stats = {
-  projects: 6,
+  projects: 7,
   technologies: 15,
   experience: "2nd Year Student",
   commits: "100+",
@@ -104,6 +104,17 @@ export const projects = [
     image: "/newsscope.png",
     featured: true,
   },
+  {
+    id: 6,
+    title: "Portfolio",
+    description: "A modern, interactive portfolio website. Features a sleek glass-morphism design, animated backgrounds, theme customization, and an AI-powered chatbot. Showcases projects, skills, and provides an elegant platform to present my work.",
+    category: "Web Development",
+    technologies: ["Python", "Flask", "API Integration", "Vercel"],
+    github: "https://github.com/rohillamanas06-commits/My-Portfolio",
+    demo: "https://manas-rohilla.vercel.app/",
+    image: "/portfolio.png",
+    featured: true,
+  },
 ];
 
 export const skills = {
@@ -123,6 +134,11 @@ export const skills = {
   "Data Science": [
     { name: "Pandas", level: 85 },
     { name: "NumPy", level: 85 },
+  ],
+  "Web Development": [
+    // Add your web development skills here, for example:
+    // { name: "React", level: 90 },
+    // { name: "TypeScript", level: 85 },
   ],
   "AI Tools": [
     { name: "Cursor", level: 95 },
