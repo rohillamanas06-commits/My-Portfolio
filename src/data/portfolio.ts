@@ -135,11 +135,6 @@ export const skills = {
     { name: "Pandas", level: 85 },
     { name: "NumPy", level: 85 },
   ],
-  "Web Development": [
-    // Add your web development skills here, for example:
-    // { name: "React", level: 90 },
-    // { name: "TypeScript", level: 85 },
-  ],
   "AI Tools": [
     { name: "Cursor", level: 95 },
     { name: "Windsurf", level: 90 },
