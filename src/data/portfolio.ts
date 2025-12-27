@@ -112,7 +112,6 @@ export const projects = [
     technologies: ["Python", "Flask", "API Integration", "Vercel"],
     github: "https://github.com/rohillamanas06-commits/My-Portfolio",
     demo: "https://manas-rohilla.vercel.app/",
-    image: "/portfolio.png",
     featured: true,
   },
 ];
@@ -145,4 +144,4 @@ export const skills = {
   ],
 };
 
-export const categories = ["All", "Healthcare AI", "Smart Transportation", "Utility", "AI Tools"];
+export const categories = ["All", "Healthcare AI", "Smart Transportation", "Utility", "AI Tools", "Web Development"];
